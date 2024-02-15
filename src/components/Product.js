@@ -3,7 +3,7 @@
 import { StarIcon } from 'lucide-react'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
-import Currency from 'react-currency-formatter'
+
 
 
 
@@ -38,7 +38,7 @@ const Product = (({id, title, price, description, category, image}) => {
       </div>
       <p className=" line-clamp-2 text-xs my-2 ">{description}</p>
       <div className='mb-5'>
-        <Currency quantity={price} currency='USD' />
+        ${price}.00
       </div>
       {hasPrime && (
         <div className='flex items-center space-x-2 -mt-5'>
