@@ -3,6 +3,8 @@
 import { StarIcon } from 'lucide-react'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
+import {Currency, format} from 'currency-formatter';
+
 
 
 
@@ -12,7 +14,9 @@ const MIN_RATING = 1;
 
 const Product = (({id, title, price, description, category, image}) => {  
   const [rating, setRating] = useState();
-  const [hasPrime, setHasPrime] = useState()
+  const [hasPrime, setHasPrime] = useState();
+  const currencyFormatter = format;
+
 
   useEffect(() => {
     setRating(Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING);
@@ -38,7 +42,7 @@ const Product = (({id, title, price, description, category, image}) => {
       </div>
       <p className=" line-clamp-2 text-xs my-2 ">{description}</p>
       <div className='mb-5'>
-        ${price}.00
+        {currencyFormatter(price, { code: 'USD' })}
       </div>
       {hasPrime && (
         <div className='flex items-center space-x-2 -mt-5'>

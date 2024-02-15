@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.1",
+    "currency-formatter": "^1.5.9",
     "firebase": "^10.8.0",
     "firebase-admin": "^12.0.0",
     "lucide-react": "^0.331.0",
