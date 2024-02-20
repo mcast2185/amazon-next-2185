@@ -2,13 +2,23 @@ import Image from 'next/image';
 import React from 'react'
 import SearchBar from './SearchBar';
 import { MenuIcon, ShoppingCart } from 'lucide-react';
+import {signIn, signOut, useSession} from 'next-auth/react'
+import { useRouter } from 'next/router';
+import {useSelector} from 'react-redux'
+import { selectItems } from '../slices/basketSlice';
+import { useEffect } from 'react';
 
 const Header = () => {
+  const {data: session, status} = useSession();
+  const router = useRouter();
+  const items = useSelector(selectItems);
+
   return (
     <header>
       <div className='flex items-center bg-amazon_blue p-2 gap-2 flex-grow py-1'>
         <div className='mt-2 flex items-center flex-grow sm:flex-grow-0'>
           <Image
+            onClick={() => router.push('/')}
             src="https://links.papareact.com/f90"
             width={150}
             height={40}
@@ -18,17 +28,23 @@ const Header = () => {
         </div>
         <SearchBar/>
         <div className='text-white flex items-center text-xs space-x-6 mx-6 whitespace-nowrap'>
-          <div className='link'>
-            <p>Hello Dr. Hughponerstein</p>
+          <div onClick={status === "unauthenticated" ? signIn : signOut} className='link'>
+            <p>
+              {status === "authenticated" ? `Hello, ${session.user.name}`: "Sign in"}
+            </p>
             <p className='font-extrabold md:text-sm'>Account & List</p>
           </div>
           <div className='link'>
             <p>Returns</p>
             <p className='font-extrabold md:text-sm'>& Orders</p>
           </div>
-          <div className='link relative flex items-center'>
-            <span className='absolute top-0 right-0 md:right-10 h-4 w-4 bg-yellow-400 text-center rounded-full text-black font-bold'>
-              0
+          <div onClick={() => router.push('/checkout')} 
+            className='link relative flex items-center'
+          >
+            <span
+              className='absolute top-0 right-0 md:right-10 h-4 w-4 
+              bg-yellow-400 text-center rounded-full text-black font-bold'>
+              {items.length}
             </span>
             <ShoppingCart className='h-10 w-9'/>
             <p className='hidden md:inline font-extrabold md:text-sm p-0.5 mt-2'>Basket</p>
@@ -55,3 +71,18 @@ const Header = () => {
 }
 
 export default Header;
+
+
+
+  // {status === "authenticated" && (
+  //             <div className=''>
+  //               <p>Hello {session.user.name}</p>
+  //               <p className='font-extrabold md:text-sm'>Account & List</p>
+  //             </div>
+
+  //           ) (
+  //             <div onClick={signIn} className='link'>
+  //               <p className='text-xs font-medium'>Sign In</p>
+  //               <p className='font-extrabold md:text-sm'>Account & List</p>
+  //             </div>
+  //           )}
