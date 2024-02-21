@@ -1,4 +1,5 @@
-import firebase from 'firebase/firestore';
+const firebase = require('firebase-admin/app');
+const { getFirestore } = require('firebase-admin/firestore');
 
 const firebaseConfig = {
   apiKey: "AIzaSyAi9Z5xr5tAFU10ogXUObTr9mNSbEmi4ZQ",
@@ -9,3 +10,10 @@ const firebaseConfig = {
   appId: "1:194340355359:web:884dfe6f4699196ac5c42a",
   measurementId: "G-REVPYQ3NQR"
 };
+
+
+const app = !firebase.getApps().length ? firebase.initializeApp(firebaseConfig) : firebase.getApp();
+const db = getFirestore();
+
+
+export default db;

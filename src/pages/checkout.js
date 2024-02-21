@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { selectItems, selectTotal } from '../slices/basketSlice';
 import CheckoutProduct from '../components/CheckoutProduct';
 import { CurrencyFormatter } from '../components/CurrencyFormatter';
-import { useSession } from 'next-auth/react';
+import { getSession, useSession } from 'next-auth/react';
 import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios';
 
@@ -102,3 +102,13 @@ const Checkout = () => {
 }
 
 export default Checkout;
+
+export const getServerSideProps = async (context) => {
+  const session = await getSession(context);
+
+  return {
+    props: {
+      session
+    }
+  };
+};

@@ -1,12 +1,11 @@
 import Image from 'next/image';
-import React from 'react'
 import SearchBar from './SearchBar';
 import { MenuIcon, ShoppingCart } from 'lucide-react';
-import {signIn, signOut, useSession} from 'next-auth/react'
+import {signIn, signOut, useSession} from 'next-auth/react';
 import { useRouter } from 'next/router';
-import {useSelector} from 'react-redux'
+import {useSelector} from 'react-redux';
 import { selectItems } from '../slices/basketSlice';
-import { useEffect } from 'react';
+
 
 const Header = () => {
   const {data: session, status} = useSession();
@@ -34,7 +33,7 @@ const Header = () => {
             </p>
             <p className='font-extrabold md:text-sm'>Account & List</p>
           </div>
-          <div className='link'>
+          <div onClick={() => session && router.push('/orders')} className='cursor-pointer link'>
             <p>Returns</p>
             <p className='font-extrabold md:text-sm'>& Orders</p>
           </div>
