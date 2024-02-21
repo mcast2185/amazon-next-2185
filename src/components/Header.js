@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import SearchBar from './SearchBar';
 import { MenuIcon, ShoppingCart } from 'lucide-react';
-import {signIn, signOut, useSession} from 'next-auth/react';
+import {getSession, signIn, signOut, useSession} from 'next-auth/react';
 import { useRouter } from 'next/router';
 import {useSelector} from 'react-redux';
 import { selectItems } from '../slices/basketSlice';
@@ -71,6 +71,15 @@ const Header = () => {
 
 export default Header;
 
+export const getServerSideProps = async (context) => {
+  const session = await getSession(context);
+
+  return {
+    props: {
+      session
+    }
+  }
+}
 
 
   // {status === "authenticated" && (
