@@ -1,28 +1,7 @@
-# Installation Steps
+# Building out the frontend structure as well as the backend functionality of our recreated Amazon website.
 
+## We do not own or affiliate with Amazon and its subsidiaries in any form.
 
+### The website is ran on NEXTJS and leverages ReactJS, Webhooks, Stripe Checkout, Firestore, NextAuth.
 
-## Using npm
-
-Run commands
-
-1) ```npm install```
-
-
-2) ```npm run dev```
-
-
-## Or using yarn
-
-Run commands 
-
-1) ```npm install --global yarn```
-
-2) ```yarn install```
-
-3) ```yarn run dev```
-
-
-### If you see the window below then you are set to build AMAZON 2.0!
-
-![Template Screenshot](TemplateScreenshot.jpg?raw=true "Template Screenshot")
+![Template Screenshot](TemplateScreenshot.jpg?raw=true )
